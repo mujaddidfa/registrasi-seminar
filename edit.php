@@ -64,6 +64,8 @@
 
         $result = mysqli_query($conn, "UPDATE registration SET email='$email', name='$name', institution='$institution', country='$country', address='$address' WHERE id='$id'");
 
+        mysqli_close($conn);
+
         header("Location: manage_registration.php");
     }
 ?>

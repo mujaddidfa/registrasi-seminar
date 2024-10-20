@@ -3,10 +3,10 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Registrasi Seminar</title>
+	<title>Tambah Peserta</title>
 </head>
 <body>
-	<form action="register.php" method="post">
+	<form action="add.php" method="post">
 		<table>
 			<tr>
 				<td>Email</td>
@@ -50,7 +50,7 @@
 
 			mysqli_close($conn);
 
-			header('Location: index.php');
+			header('Location: manage_registration.php');
 		}
 	?>
 </body>

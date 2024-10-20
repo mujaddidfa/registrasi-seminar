@@ -12,6 +12,8 @@
 </head>
 <body>
     <table border="1">
+        <a href="index.php">Kembali</a>
+        <a href="add.php">Tambah Peserta</a>
         <tr>
             <th>Email</th>
             <th>Nama</th>
