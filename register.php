@@ -4,29 +4,45 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Registrasi Seminar</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+	<style>
+		table {
+			margin: auto;
+		}
+		table tr td {
+			padding: 5px;
+		}
+		table tr td input {
+			width: 100%;
+		}
+		table tr td input[type="submit"] {
+			width: 50%;
+			margin: auto;
+		}
+	</style>
 </head>
 <body>
 	<form action="register.php" method="post">
 		<table>
 			<tr>
-				<td>Email</td>
-				<td><input type="email" name="email" required></td>
+				<td><label for="email">Email</label></td>
+				<td><input type="email" id="email" name="email" required></td>
 			</tr>
 			<tr>
-				<td>Nama</td>
-				<td><input type="text" name="name" required></td>
+				<td><label for="name">Nama</label></td>
+				<td><input type="text" id="name" name="name" required></td>
 			</tr>
 			<tr>
-				<td>Insitusi</td>
-				<td><input type="text" name="institution" required></td>
+				<td><label for="institution">Institusi</label></td>
+				<td><input type="text" id="institution" name="institution" required></td>
 			</tr>
 			<tr>
-				<td>Negara</td>
-				<td><input type="text" name="country" required></td>
+				<td><label for="country">Negara</label></td>
+				<td><input type="text" id="country" name="country" required></td>
 			</tr>
 			<tr>
-				<td>Alamat</td>
-				<td><input type="text" name="address" required></td>
+				<td><label for="address">Alamat</label></td>
+				<td><input type="text" id="address" name="address" required></td>
 			</tr>
 			<tr>
 				<td></td>
@@ -57,7 +73,7 @@
 
 				mysqli_close($conn);
 
-				header('Location: index.php');
+				header('Location: index.html');
 				exit();
 			}
 		}
