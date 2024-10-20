@@ -45,12 +45,21 @@
 			$country = $_POST['country'];
 			$address = $_POST['address'];
 
-			$sql = "INSERT INTO registration (email, name, institution, country, address) VALUES ('$email', '$name', '$institution', '$country', '$address')";
-			$result = mysqli_query($conn, $sql);
+			$checkEmailQuery = "SELECT * FROM registration WHERE is_deleted=0 AND email='$email'";
+			$checkEmailResult = mysqli_query($conn, $checkEmailQuery);
 
-			mysqli_close($conn);
+			if (mysqli_num_rows($checkEmailResult) > 0) {
+				echo "<script>alert('Email telah terdaftar.')</script>";
+				exit();
+			} else {
+				$sql = "INSERT INTO registration (email, name, institution, country, address) VALUES ('$email', '$name', '$institution', '$country', '$address')";
+				$result = mysqli_query($conn, $sql);
 
-			header('Location: index.php');
+				mysqli_close($conn);
+
+				header('Location: index.php');
+				exit();
+			}
 		}
 	?>
 </body>

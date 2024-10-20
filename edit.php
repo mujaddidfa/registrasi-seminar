@@ -26,23 +26,23 @@
         <table>
             <tr>
                 <td>Email</td>
-                <td><input type="text" name="email" value="<?php echo $email; ?>"></td>
+                <td><input type="email" name="email" value="<?php echo $email; ?>" required></td>
             </tr>
             <tr>
                 <td>Nama</td>
-                <td><input type="text" name="name" value="<?php echo $name; ?>"></td>
+                <td><input type="text" name="name" value="<?php echo $name; ?>" required></td>
             </tr>
             <tr>
                 <td>Institusi</td>
-                <td><input type="text" name="institution" value="<?php echo $institution; ?>"></td>
+                <td><input type="text" name="institution" value="<?php echo $institution; ?>" required></td>
             </tr>
             <tr>
                 <td>Negara</td>
-                <td><input type="text" name="country" value="<?php echo $country; ?>"></td>
+                <td><input type="text" name="country" value="<?php echo $country; ?>" required></td>
             </tr>
             <tr>
                 <td>Alamat</td>
-                <td><input type="text" name="address" value="<?php echo $address; ?>"></td>
+                <td><input type="text" name="address" value="<?php echo $address; ?>" required></td>
             </tr>
             <tr>
                 <td><input type="hidden" name="id" value=<?php echo $_GET['id']; ?>></td>
@@ -62,10 +62,19 @@
         $country = $_POST['country'];
         $address = $_POST['address'];
 
-        $result = mysqli_query($conn, "UPDATE registration SET email='$email', name='$name', institution='$institution', country='$country', address='$address' WHERE id='$id'");
+        $check_email_query = "SELECT * FROM registration WHERE is_deleted=0 AND email='$email' AND id != '$id'";
+        $check_email_result = mysqli_query($conn, $check_email_query);
 
-        mysqli_close($conn);
+        if (mysqli_num_rows($check_email_result) > 0) {
+            echo "<script>alert('Email telah terdaftar.'); window.history.back();</script></script>";
+            exit();
+        } else {
+            $result = mysqli_query($conn, "UPDATE registration SET email='$email', name='$name', institution='$institution', country='$country', address='$address' WHERE id=$id");
 
-        header("Location: manage_registration.php");
+            mysqli_close($conn);
+
+            header("Location: manage_registration.php");
+            exit();
+        }
     }
 ?>
